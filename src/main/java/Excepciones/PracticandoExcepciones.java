@@ -37,11 +37,51 @@ public class PracticandoExcepciones {
 		}
 		
 		
+		//si un metodo hace throws de una excepcion, se debe tratar aqui o volver a hacer throws en el mismo metodo
+		//te obliga a tratar la excepcion o hacer throws
+		int resultado = 0;
+		try {
+			resultado=sumar(3,30);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		//aqui se tratan las excepciones propias
+		try {
+			comprobarResult(resultado);
+		} catch (ExcepcionPropia e) {
+			System.out.println("Tenemos un error: "+e);
+		}
+
+		String a="pepe";
+		String b="pepe";
+		a.equals(b);
 		
 		
-		
-		
-		
-		
+	}
+	
+	//para no tratar una excepcion se añade throws NombreExcepcion
+	
+	public static int sumar(int a,int b) throws Exception{
+		return a+b;
+	}
+	
+	
+//	para tirar una excepcion propia se añade throw new excepcion
+//	se puede hacer de dos formas, pasando el mensaje directamente al constructor y tratandolo en el metodo, o pasandolo al siguiente metodo y tratarlo ahi
+	public static void comprobarResult(int r) throws ExcepcionPropia {
+		if(r<10) {
+			throw new ExcepcionPropia();
+		}
+		if(r>30) {
+			
+			  try {
+		          // Lanzar la excepción personalizada
+		          throw new ExcepcionPropia("Este es un mensaje de error personalizado");
+		      } catch (ExcepcionPropia e) {
+		          // Capturar y manejar la excepción personalizada
+		          System.out.println("Se ha producido una excepción: " + e.getMessage());
+		      }
+		}
 	}
 }
